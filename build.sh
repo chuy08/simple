@@ -14,8 +14,10 @@ export GOARCH=amd64
 
 rm -rf simple
 
-go build -ldflags="-X main.buildVersion=$BUILD_VERSION -X main.buildTime=$BUILD_TIME" .
+echo "Build Version: $BUILD_VERSION"
 
-docker build -t $REPO/$APPLICATION_NAME .
-docker tag $REPO/$APPLICATION_NAME $REPO/$APPLICATION_NAME:$BUILD_VERSION
-docker image push $REPO/$APPLICATION_NAME:$BUILD_VERSION
+go build -ldflags="-X simple/cmd.BuildVersion=$BUILD_VERSION" .
+
+#docker build -t $REPO/$APPLICATION_NAME .
+#docker tag $REPO/$APPLICATION_NAME $REPO/$APPLICATION_NAME:$BUILD_VERSION
+#docker image push $REPO/$APPLICATION_NAME:$BUILD_VERSION
