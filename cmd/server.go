@@ -24,13 +24,8 @@ import (
 // serverCmd represents the server command
 var serverCmd = &cobra.Command{
 	Use:   "server",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Run the Server at a specified port",
+	Long:  `Turn the thing on and listen somewhere`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("server called")
 	},
@@ -47,5 +42,5 @@ func init() {
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// serverCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	serverCmd.Flags().StringP("port", "p", ":1323", "Port to run server on")
 }
