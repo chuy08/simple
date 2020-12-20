@@ -17,7 +17,12 @@ package cmd
 
 import (
 	"fmt"
+	"net/http"
+	"os"
+	"time"
 
+	"github.com/labstack/echo"
+	"github.com/labstack/gommon/log"
 	"github.com/spf13/cobra"
 )
 
@@ -27,7 +32,10 @@ var serverCmd = &cobra.Command{
 	Short: "Run the Server at a specified port",
 	Long:  `Turn the thing on and listen somewhere`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("server called")
+		port, _ := cmd.Flags().GetString("port")
+		//fmt.Println("server called")
+		//fmt.Println(port)
+		start(port)
 	},
 }
 
@@ -42,5 +50,38 @@ func init() {
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	serverCmd.Flags().StringP("port", "p", ":1323", "Port to run server on")
+	serverCmd.Flags().StringP("port", "p", "1323", "Port to run server on")
+}
+
+func start(port string) {
+	fmt.Println("Hi Chuy")
+	fmt.Println(port)
+
+	s := &http.Server{
+		Addr:         fmt.Sprintf(":%s", port),
+		ReadTimeout:  20 * time.Minute,
+		WriteTimeout: 20 * time.Minute,
+	}
+
+	e := echo.New()
+	e.Logger.SetOutput(os.Stdout)
+	e.Debug = true
+	e.HideBanner = true
+
+	e.GET("/_command/status", getStatus)
+	e.GET("/_command/*", getCommand)
+
+	e.Logger.Fatal(e.StartServer(s))
+}
+
+func getCommand(c echo.Context) error {
+	msg := "Command Application"
+	log.Info(msg)
+	return c.String(200, msg)
+}
+
+func getStatus(c echo.Context) error {
+	msg := "Ok"
+	log.Info(msg)
+	return c.String(200, msg)
 }
