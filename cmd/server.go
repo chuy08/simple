@@ -50,13 +50,10 @@ func init() {
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	serverCmd.Flags().StringP("port", "p", "1323", "Port to run server on")
+	serverCmd.Flags().StringP("port", "p", "80", "Port to run server on")
 }
 
 func start(port string) {
-	fmt.Println("Hi Chuy")
-	fmt.Println(port)
-
 	s := &http.Server{
 		Addr:         fmt.Sprintf(":%s", port),
 		ReadTimeout:  20 * time.Minute,
