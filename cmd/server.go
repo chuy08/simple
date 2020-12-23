@@ -82,6 +82,6 @@ func getCommand(c echo.Context) error {
 
 func getStatus(c echo.Context) error {
 	msg := "Ok"
-	log.Info(msg)
+	log.Debug(msg)
 	return c.String(200, msg)
 }

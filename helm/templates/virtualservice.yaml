@@ -1,16 +1,16 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: public-gateway
+  name: public
 spec:
   hosts:
   - "*"
   gateways:
-  - public-gateway
+  - public
   http:
   - match:
     - uri:
-        exact: /_command/
+        prefix: /
     route:
     - destination:
         host: {{ .Chart.Name }}

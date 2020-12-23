@@ -20,4 +20,4 @@ go build -ldflags="-X simple/cmd.BuildVersion=$BUILD_VERSION" .
 
 docker build -t $REPO/$APPLICATION_NAME .
 docker tag $REPO/$APPLICATION_NAME $REPO/$APPLICATION_NAME:$BUILD_VERSION
-#docker image push $REPO/$APPLICATION_NAME:$BUILD_VERSION
+docker image push $REPO/$APPLICATION_NAME:$BUILD_VERSION

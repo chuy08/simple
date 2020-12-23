@@ -38,7 +38,7 @@ spec:
               containerPort: 1323
               protocol: TCP
           args:
-            - -port=1323
+            - server
           livenessProbe:
             httpGet:
               path: /_command/status
