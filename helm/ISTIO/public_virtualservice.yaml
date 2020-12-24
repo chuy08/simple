@@ -10,6 +10,14 @@ spec:
   http:
   - match:
     - uri:
+        prefix: /_command/status
+    route:
+    - destination:
+        host: simple2
+        port:
+          number: 8001
+  - match:
+    - uri:
         prefix: /_command
     route:
     - destination:
