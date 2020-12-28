@@ -4,23 +4,16 @@ metadata:
   name: public-simple
 spec:
   hosts:
-  - public.mymco.local
+  - "*.mymco.local"
   gateways:
   - public-gateway
   http:
   - match:
-    - uri:
-        prefix: /_command/status
-    route:
-    - destination:
-        host: simple2
-        port:
-          number: 8001
-  - match:
-    - uri:
-        prefix: /_command
+    - sniHosts:
+      - "*.mymco.local"
     route:
     - destination:
         host: simple
         port:
           number: 8000
+

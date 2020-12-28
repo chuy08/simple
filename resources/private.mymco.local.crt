@@ -1,0 +1,87 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            de:7a:aa:49:79:42:ad:41:aa:bc:9f:f4:2a:6b:03:33
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: CN=root.mymco.local
+        Validity
+            Not Before: Dec 24 02:56:31 2020 GMT
+            Not After : Dec  9 02:56:31 2023 GMT
+        Subject: CN=private.mymco.local
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                RSA Public-Key: (2048 bit)
+                Modulus:
+                    00:be:f1:a5:b2:fa:72:c6:e6:03:63:a2:d0:45:99:
+                    75:2c:8e:31:56:37:a8:e2:c0:88:c7:4c:de:35:ed:
+                    70:07:0e:a6:27:e2:9b:ff:01:02:68:d1:1a:67:f8:
+                    d0:ba:1d:c3:7c:3f:61:c6:70:9f:50:38:f0:ef:e1:
+                    ec:e2:60:dc:5d:f7:48:e5:57:9e:48:25:fc:36:98:
+                    80:34:77:72:88:2c:06:ff:73:ce:e3:1c:a4:11:4d:
+                    4f:ec:1b:bf:f1:47:26:63:02:7f:78:ae:ed:44:f4:
+                    e5:70:82:22:3e:f9:84:ed:c8:d1:be:e9:33:6b:00:
+                    7f:f9:bd:cf:ab:84:a5:c5:2e:3a:30:bd:bf:56:fc:
+                    58:27:85:e2:ef:53:33:6d:04:79:d5:ab:85:70:1b:
+                    4c:68:64:03:cf:2d:35:0f:95:1f:72:1d:b4:a3:ea:
+                    80:4b:d9:68:d1:57:ba:da:2f:dc:26:f3:ef:96:49:
+                    64:25:bc:0d:c5:fe:f0:6c:e3:08:74:02:64:28:be:
+                    06:d8:64:e0:49:67:a1:0c:20:a2:dd:12:3b:4a:a1:
+                    3c:1e:aa:14:88:eb:d1:22:c8:b0:fd:8e:4e:83:94:
+                    40:dc:46:34:e6:da:86:e5:ca:97:d3:cf:8e:41:b3:
+                    c5:83:86:45:e0:fc:f6:6a:4e:26:df:ec:16:6c:77:
+                    54:2f
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            X509v3 Subject Key Identifier: 
+                07:2B:7E:04:55:6A:3B:65:FE:FB:B8:74:6A:80:73:CD:E3:C5:9A:58
+            X509v3 Authority Key Identifier: 
+                keyid:57:D4:0F:2D:AE:AC:6E:3E:47:57:FE:C4:6C:1F:14:9E:9E:65:95:C7
+                DirName:/CN=root.mymco.local
+                serial:2E:63:CE:CA:72:8D:C7:C4:35:27:69:F8:C3:8D:A1:DD:5A:E8:9B:B9
+
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication
+            X509v3 Key Usage: 
+                Digital Signature, Key Encipherment
+            X509v3 Subject Alternative Name: 
+                DNS:private.mymco.local
+    Signature Algorithm: sha256WithRSAEncryption
+         17:2b:4f:33:5b:c5:17:1f:a2:5e:01:59:ec:d9:c5:ac:c9:a9:
+         46:be:fb:54:cb:e2:3b:d8:a9:1b:2d:0a:09:3d:62:4a:6c:1a:
+         be:fa:43:27:74:1e:a6:42:f1:91:78:1c:88:81:ad:8a:f7:26:
+         8f:1b:28:45:8b:19:06:45:e8:da:e0:db:2c:a5:1a:8b:35:25:
+         4d:c1:f6:50:8e:03:45:52:1f:f7:a7:d0:ca:90:09:2a:d9:8f:
+         05:b6:f9:8e:f2:84:34:2a:16:c8:36:b0:ef:85:fe:4e:70:1a:
+         bd:c2:27:3d:87:86:2e:77:89:98:c8:35:33:c0:13:7a:49:dc:
+         27:6b:82:2a:76:21:f3:1f:af:ac:76:52:f5:51:8b:4e:da:1b:
+         69:45:e3:74:d8:c2:15:f5:98:f6:5f:aa:4c:7a:0a:db:ce:a9:
+         70:6f:89:0c:a9:76:d0:0c:18:4a:76:01:94:98:b6:5f:ff:ab:
+         85:83:df:39:47:c1:dc:dd:1c:6d:ee:a2:12:35:11:f0:88:85:
+         94:8f:9f:e1:8a:60:bd:bb:78:6b:6e:83:86:d2:2c:f9:b8:a4:
+         0f:8c:c1:af:d2:09:0e:a8:88:78:52:b6:0a:42:fe:8c:a6:79:
+         4f:2f:13:92:80:af:35:89:ba:4f:c2:57:de:21:3c:c7:b2:92:
+         0e:b5:98:a3
+-----BEGIN CERTIFICATE-----
+MIIDjDCCAnSgAwIBAgIRAN56qkl5Qq1Bqryf9CprAzMwDQYJKoZIhvcNAQELBQAw
+GzEZMBcGA1UEAwwQcm9vdC5teW1jby5sb2NhbDAeFw0yMDEyMjQwMjU2MzFaFw0y
+MzEyMDkwMjU2MzFaMB4xHDAaBgNVBAMME3ByaXZhdGUubXltY28ubG9jYWwwggEi
+MA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC+8aWy+nLG5gNjotBFmXUsjjFW
+N6jiwIjHTN417XAHDqYn4pv/AQJo0Rpn+NC6HcN8P2HGcJ9QOPDv4eziYNxd90jl
+V55IJfw2mIA0d3KILAb/c87jHKQRTU/sG7/xRyZjAn94ru1E9OVwgiI++YTtyNG+
+6TNrAH/5vc+rhKXFLjowvb9W/FgnheLvUzNtBHnVq4VwG0xoZAPPLTUPlR9yHbSj
+6oBL2WjRV7raL9wm8++WSWQlvA3F/vBs4wh0AmQovgbYZOBJZ6EMIKLdEjtKoTwe
+qhSI69EiyLD9jk6DlEDcRjTm2oblypfTz45Bs8WDhkXg/PZqTibf7BZsd1QvAgMB
+AAGjgccwgcQwCQYDVR0TBAIwADAdBgNVHQ4EFgQUByt+BFVqO2X++7h0aoBzzePF
+mlgwVgYDVR0jBE8wTYAUV9QPLa6sbj5HV/7EbB8Unp5llcehH6QdMBsxGTAXBgNV
+BAMMEHJvb3QubXltY28ubG9jYWyCFC5jzspyjcfENSdp+MONod1a6Ju5MBMGA1Ud
+JQQMMAoGCCsGAQUFBwMBMAsGA1UdDwQEAwIFoDAeBgNVHREEFzAVghNwcml2YXRl
+Lm15bWNvLmxvY2FsMA0GCSqGSIb3DQEBCwUAA4IBAQAXK08zW8UXH6JeAVns2cWs
+yalGvvtUy+I72KkbLQoJPWJKbBq++kMndB6mQvGReByIga2K9yaPGyhFixkGReja
+4NsspRqLNSVNwfZQjgNFUh/3p9DKkAkq2Y8FtvmO8oQ0KhbINrDvhf5OcBq9wic9
+h4Yud4mYyDUzwBN6Sdwna4IqdiHzH6+sdlL1UYtO2htpReN02MIV9Zj2X6pMegrb
+zqlwb4kMqXbQDBhKdgGUmLZf/6uFg985R8Hc3Rxt7qISNRHwiIWUj5/himC9u3hr
+boOG0iz5uKQPjMGv0gkOqIh4UrYKQv6MpnlPLxOSgK81ibpPwlfeITzHspIOtZij
+-----END CERTIFICATE-----
