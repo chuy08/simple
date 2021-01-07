@@ -4,13 +4,21 @@ metadata:
   name: private-simple
 spec:
   hosts:
-  - private.mymco.local
+    - '*'
   gateways:
-  - private-gateway
+    - private-gateway
   http:
   - match:
     - uri:
-        prefix: /_command
+        prefix: /_command/status
+    route:
+    - destination:
+        host: simple
+        port:
+          number: 8888
+  - match:
+    - uri:
+        prefix: /_command/
     route:
     - destination:
         host: simple
