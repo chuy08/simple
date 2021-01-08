@@ -12,4 +12,5 @@ spec:
       name: http
       protocol: HTTP
     hosts:
-    - '*'
+    - 'private.mymco.local'
+    - 'public.mymco.local'
