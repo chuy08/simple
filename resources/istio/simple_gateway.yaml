@@ -2,7 +2,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: private-gateway
+  name: simple-gateway
 spec:
   selector:
     istio: ingressgateway # use istio default controller
@@ -12,5 +12,5 @@ spec:
       name: http
       protocol: HTTP
     hosts:
-    - 'private.mymco.local'
-    - 'public.mymco.local'
+    - private.mymco.local
+    - public.mymco.local
