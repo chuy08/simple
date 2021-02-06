@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM scratch
 
 COPY simple /simple
 
