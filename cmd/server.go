@@ -5,7 +5,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
+	http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -21,8 +21,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/labstack/echo"
-	"github.com/labstack/gommon/log"
+	"github.com/labstack/echo/v4"
 	"github.com/spf13/cobra"
 )
 
@@ -32,10 +31,9 @@ var serverCmd = &cobra.Command{
 	Short: "Run the Server at a specified port",
 	Long:  `Turn the thing on and listen somewhere`,
 	Run: func(cmd *cobra.Command, args []string) {
-		port, _ := cmd.Flags().GetString("port")
 		//fmt.Println("server called")
 		//fmt.Println(port)
-		start(port)
+		start(cmd)
 	},
 }
 
@@ -53,7 +51,8 @@ func init() {
 	serverCmd.Flags().StringP("port", "p", "80", "Port to run server on")
 }
 
-func start(port string) {
+func start(cmd *cobra.Command) {
+	port, _ := cmd.Flags().GetString("port")
 	s := &http.Server{
 		Addr:         fmt.Sprintf(":%s", port),
 		ReadTimeout:  20 * time.Minute,
@@ -65,10 +64,17 @@ func start(port string) {
 	e.Debug = true
 	e.HideBanner = true
 
+	e.GET("/", helloWorld)
 	e.GET("/_command/status", getStatus)
 	e.GET("/_command/*", getCommand)
 
 	e.Logger.Fatal(e.StartServer(s))
+}
+
+func helloWorld(c echo.Context) error {
+	msg := "Hello World"
+	log.Sugar().Info("Hello world")
+	return c.String(200, msg)
 }
 
 func getCommand(c echo.Context) error {
