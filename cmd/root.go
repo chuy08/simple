@@ -18,20 +18,21 @@ package cmd
 import (
 	"fmt"
 	"os"
+	"simple/config"
 	"simple/internal/logger"
 	"strings"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
-	"go.uber.org/zap"
-
 	"github.com/spf13/viper"
+	"go.uber.org/zap"
 )
 
 var (
-	cfgFile   string = "simple"
-	envPrefix string = "simple"
-	log       *zap.Logger
+	configFile string
+	log        *zap.Logger
+	serverPort int32
+	vi         *viper.Viper
 
 	// rootCmd represents the base command when called without any subcommands
 	rootCmd = &cobra.Command{
@@ -46,7 +47,9 @@ var (
 		// has an action associated with it:
 		Run: func(cmd *cobra.Command, args []string) {
 			//fmt.Printf("cmd: %v, args: %v", cmd, args)
-			log.Sugar().Info("ready set go...")
+			//log.Sugar().Info("ready set go...")
+			cfg := config.New(vi)
+			log.Sugar().Infof("config foo: %s, port: %d", cfg.GetFoo(), cfg.GetServerPort())
 		},
 	}
 )
@@ -67,36 +70,42 @@ func init() {
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
 
+	rootCmd.Flags().Int32Var(&serverPort, "port", 80, "Port to run server on")
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
 	//	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is ./simple.json)")
+	rootCmd.PersistentFlags().StringVar(&configFile, "config", "", "config file (default is ./config.json)")
 }
 
 // initConfig reads in config file and ENV variables if set.
 func initConfig(cmd *cobra.Command) error {
-	v := viper.New()
-	v.SetConfigName(cfgFile)
-	v.AddConfigPath(".")
+	vi = viper.New()
+	vi.SetConfigName(configFile)
+	vi.AddConfigPath(".")
 
 	// If a config file is found, read it in.
-	if err := viper.ReadInConfig(); err == nil {
-		fmt.Println("Using config file:", viper.ConfigFileUsed())
+	if err := vi.ReadInConfig(); err == nil {
+		log.Sugar().Infof("Found config file: %s", vi.ConfigFileUsed())
 	}
+
+	vi.AutomaticEnv() // read in environment variables that match
 
 	// When we bind flags to environment variables expect that the
 	// environment variables are prefixed, e.g. a flag like --number
 	// binds to an environment variable STING_NUMBER. This helps
 	// avoid conflicts.
-	v.SetEnvPrefix(envPrefix)
+	vi.SetEnvPrefix("simple")
 
 	// Environment variables can't have dashes in them, so bind them to their equivalent
 	// keys with underscores, e.g. --favorite-color to STING_FAVORITE_COLOR
-	v.SetEnvKeyReplacer(strings.NewReplacer("-", "_"))
+	vi.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
 
-	v.AutomaticEnv() // read in environment variables that match
+	vi.BindEnv("server.port", "SERVER_PORT")
 
-	bindFlags(cmd, v)
+	vi.BindPFlag("server.port", cmd.Flags().Lookup("port"))
+
+	bindFlags(cmd, vi)
+
 	return nil
 }
 

@@ -22,7 +22,9 @@ import (
 	"time"
 
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 	"github.com/spf13/cobra"
+	"go.uber.org/zap"
 )
 
 // serverCmd represents the server command
@@ -64,6 +66,29 @@ func start(cmd *cobra.Command) {
 	e.Debug = true
 	e.HideBanner = true
 
+	e.Use(middleware.RequestLoggerWithConfig(middleware.RequestLoggerConfig{
+		LogURI:      true,
+		LogStatus:   true,
+		LogError:    true,
+		LogMethod:   true,
+		HandleError: true,
+		LogValuesFunc: func(c echo.Context, v middleware.RequestLoggerValues) error {
+			if v.Error == nil {
+				log.Info("request",
+					zap.String("method", v.Method),
+					zap.String("URI", v.URI),
+					zap.Int("status", v.Status),
+				)
+			} else {
+				log.Error("request error",
+					zap.String("method", v.Method),
+					zap.String("URI", v.URI),
+					zap.Int("status", v.Status))
+			}
+			return nil
+		},
+	}))
+
 	e.GET("/", helloWorld)
 	e.GET("/_command/status", getStatus)
 	e.GET("/_command/*", getCommand)
@@ -73,18 +98,18 @@ func start(cmd *cobra.Command) {
 
 func helloWorld(c echo.Context) error {
 	msg := "Hello World"
-	log.Sugar().Info("Hello world")
+	//log.Sugar().Info("Hello world")
 	return c.String(200, msg)
 }
 
 func getCommand(c echo.Context) error {
 	msg := "Command Application"
-	log.Info(msg)
+	//log.Info(msg)
 	return c.String(200, msg)
 }
 
 func getStatus(c echo.Context) error {
 	msg := "Ok"
-	log.Debug(msg)
+	//log.Debug(msg)
 	return c.String(200, msg)
 }
